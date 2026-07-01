@@ -1,0 +1,23 @@
+flask>=3.0.0
+flask-limiter>=3.5.0
+groq==0.15.0
+python-dotenv==1.0.1
+
+
+
+
+$body = @{ 
+    text = "In some cases, the dregs of great corded muscle and prowess above the meagre stumble upon the way of Severation. Like demons aping sanctity, they pursue the Art of the Cut. They break themselves upon the wheel of repetition as in accordance with the teachings, drowned in the rhythm of blades until all else spills away. Thought is impurity; identity, a hindrance. They do not emerge as masters, but as vessels: men hollowed clean, their humanity scoured out and replaced with a grotesque echo of a discipline they could never attain. Where true practitioners carve with precision, these men tear with overwhelming force, their strength bridging the gulf where mastery fails. What they lack in refinement, they surpass in ruin, their minds melted down to a single, ruinous instinct: to Cut. When they reach a man, he is simply undone. Split, shorn, erased in motions too fast and too heavy to contest. Blades that would cripple others do little but slow them. Shot and steel alike sink into their flesh and are forgotten, unless the limb itself is taken. They do not flinch, they do not falter, they do not stop, pain holds no meaning. Their blasphemous blades cry out in their grotesque parody of lost perfection, crooked as the grins beneath their mask as chaos reigns in the wake of their swing. 
+"
+    creator_id = "Example" 
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:5000/submit" -Method POST -Headers @{"Content-Type"="application/json"} -Body $body
+
+
+$appeal_body = @{ 
+    content_id = "1e4dc199-ebc7-4b5c-81f4-1daa3635f8a3"
+    creator_reasoning = "Content written by a human." 
+} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://localhost:5000/appeal" -Method POST -Headers @{"Content-Type"="application/json"} -Body $appeal_body
